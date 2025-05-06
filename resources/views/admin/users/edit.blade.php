@@ -16,7 +16,7 @@
             @method('PUT') 
             <div class="form-group">
                 <label for="img">Image</label>
-                <input type="file" class="form-control" id="img" placeholder="Image" name="img">
+                <input type="file" class="form-control" id="usersImage" placeholder="Image" name="img">
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
@@ -44,14 +44,22 @@
 </div>
 
 
-{{-- <script>
-    document.getElementById('role').addEventListener('change', function() {
-        var studentFields = document.getElementById('studentFields');
-        if (this.value == '3') {
-            studentFields.style.display = 'block'; 
-        } else {
-            studentFields.style.display = 'none';
-        }
-    });
-</script> --}}
+<script>
+    $('#usersImage').dropify({
+     messages: {
+         'default': 'Insert your picture!',
+         'replace': 'click to replace your picture!',
+         'remove':  'remove picture!',
+         'error':   'Ooops, something went wrong!.'
+     },
+     error: {
+         'fileSize': 'error because of file size',
+         'minWidth': 'required minWidth is',
+         'maxWidth': 'not allowed because its maxWidth',
+         'minHeight': 'min Height is',
+         'maxHeight': 'maxHeight require is',
+         'imageFormat': 'must be jpg, png, gif, etc.'
+     },
+ });
+</script>
 @endsection

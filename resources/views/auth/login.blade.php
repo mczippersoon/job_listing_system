@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,4 +44,67 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+@extends('layouts.auth-pages')
+
+@section('content')
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0 row">
+                {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
+                <div class="col-lg-6 d-none d-lg-block" 
+                    style="background-image: url('img/listing-picture.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; display: flex;">
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <div class="text-center">
+                        <a href="{{url('/')}}" class="h4 text-gray-900 mb-4" data-aos="zoom-in" style="text-decoration: none;"><h3>Login</h3></a>
+                         </div>
+                            {{-- <h1 class="h4 text-gray-900 mb-4" data-aos="zoom-in">Login!</h1> --}}
+                     
+                        <form class="user" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                    id="exampleInputEmail" aria-describedby="emailHelp"
+                                    placeholder="Enter Email Address..."
+                                    name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
+                                    id="exampleInputPassword" placeholder="Enter Password..."
+                                    name="password" value="{{ old('password') }}">
+                                
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox small">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="remember">
+                                    <label class="custom-control-label" for="customCheck">Remember
+                                        Me</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                Login
+                            </button>
+                        </form>
+                        <a href="{{ route('register') }}" style="border-radius: 30px;" class="btn btn-primary btn-user btn-block mt-2" >Register</a>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" href="{{ route('password.request')}}">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

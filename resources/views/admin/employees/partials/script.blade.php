@@ -62,3 +62,7 @@
         })
     }
 </script>
+
+<script>
+    let table = new DataTable('#employeeTable');
+</script>

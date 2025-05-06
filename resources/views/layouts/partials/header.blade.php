@@ -30,7 +30,15 @@
     <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css">
+    <!-- dropify-->
+    <link rel="stylesheet" href="{{ asset('css/dropify.css') }}">
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <!-- JS Dropfiy -->
+    <script src="{{ asset('js/dropify.js') }}"></script>
 
+    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
 </head>
 
 <body id="page-top">

@@ -71,19 +71,10 @@ class UserController extends Controller
             $imageFile = $request->file('img');
             $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $originalName . "_" . time() . '.' . $imageFile->getClientOriginalExtension();
-            $path = $imageFile->storeAs('public/upload/images', $fileName);
-            $user->img = $fileName; 
+            $path = $imageFile->storeAs('public/uploads/profiles/', $fileName);
+            $user->img = 'uploads/profiles/' . $fileName;
         }
-
-
-        // if ($request->role == 3) {
-        //     $user->student_id = $request->student_id;
-        //     $user->age = $request->age;
-        //     $user->course = $request->course;
-        //     $user->year = $request->year;
-        //     $user->address = $request->address;
-        // }
-
+        
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User created successfully!');
@@ -92,10 +83,13 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $profile = User::find($id);
+
+        return view('admin.profile.index')->with('profile', $profile);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -116,7 +110,7 @@ class UserController extends Controller
     
        
         $validated = $request->validate([
-            'img' => 'nullable|file|max:9024|mimes:jpeg,png',
+            'img' => 'nullable|file|max:10048|mimes:jpeg,png,jpg,gif',
             'name' => 'required',
             'role' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id, 
@@ -131,8 +125,8 @@ class UserController extends Controller
             $imageFile = $request->file('img');
             $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = $originalName . "_" . time() . '.' . $imageFile->getClientOriginalExtension();
-            $path = $imageFile->storeAs('public/upload/images', $fileName);
-            $user->img = $fileName;
+            $path = $imageFile->storeAs('public/uploads/profiles/', $fileName);
+            $user->img = 'uploads/profiles/' . $fileName;
         }
     
 
@@ -178,4 +172,40 @@ class UserController extends Controller
             return response()->json(['error' => 'Deletion failed!']);
         }
     }
+
+
+    public function updateProfilePic(Request $request, $id)
+    {
+        
+            try {            
+                $request->validate([
+                    'img' => 'required|file|mimes:jpeg,png,jpg,gif|max:10048', // Validate the image file
+                ]);
+        
+                if ($request->hasFile('img')) {
+                    $imageFile = $request->file('img');
+                    $originalName = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $filename = $originalName . '-' . time() . '.' . $imageFile->getClientOriginalExtension();
+                
+                    // Store file first
+                    $imageFile->storeAs('public/uploads/profiles/', $filename);
+                
+                    // Now update user
+                    $path = 'uploads/profiles/' . $filename;
+                    $user = User::findOrFail($id);
+                    $user->img = $path;
+                    $user->PicComplete = 1;
+                    $user->save();
+                
+                    return response()->json([
+                        'successMessage' => $user->name . '\'s profile picture successfully uploaded!'
+                    ]);
+                }
+            } catch (ValidationException $e) {
+                return redirect()->back()->withErrors($e->errors())->withInput();
+            }
+        
+    }
+
+    
 }

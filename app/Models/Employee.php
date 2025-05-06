@@ -19,6 +19,8 @@ class Employee extends Model
         'company_name',
         'contact_number',
         'type_of_job',
+        'description',
+        'requirements'
         
     ];
 }

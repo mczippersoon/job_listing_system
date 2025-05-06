@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\JobListingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,11 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 Route::resource('/users', UserController::class);
 
 Route::resource('/employees', EmployeeController::class);
+Route::put('/users/profile-pic/{id}',[App\Http\Controllers\UserController::class, 'updateProfilePic'])->name('users.updateProfilePic');
+
+Route::resource('/joblistings', JobListingController::class);
+Route::get('/joblistings/apply/{id}',[App\Http\Controllers\JobListingController::class, 'apply'])->name('apply');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

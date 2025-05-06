@@ -24,7 +24,7 @@
                 
                 <!-- Wrap the table inside a table-responsive div for mobile scrolling -->
                 <div class="table-responsive">
-                    <table class="table table-bordered table-sm" id="usersTable">
+                    <table class="table table-bordered table-sm" id="employeeTable">
                         <thead>
                             <tr>
                                 <th>ID</th>

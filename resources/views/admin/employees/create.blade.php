@@ -38,6 +38,14 @@
                     <label for="type_of_job">Type of Job</label>
                     <input type="text" class="form-control" id="type_of_job" name="type_of_job" required>
                 </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control" id="description" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">Requirements</label>
+                    <input type="text" class="form-control" id="requirements" name="requirements" required>
+                </div>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">

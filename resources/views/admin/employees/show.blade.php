@@ -36,17 +36,23 @@
             </div>
         </div>
 
-        <h5 class="text-uppercase">Middle Name</h5>
+        <h5 class="text-uppercase">Middle Name:</h5>
         {!! $employee['middle_name'] !!}
         <hr>
-        <h5 class="text-uppercase">Last Name</h5>
+        <h5 class="text-uppercase">Last Name:</h5>
         {!! $employee['last_name'] !!}
         <hr>
-        <h5 class="text-uppercase">Contact Number</h5>
+        <h5 class="text-uppercase">Contact Number:</h5>
         {!! $employee['contact_number'] !!}
         <hr>
-        <h5 class="text-uppercase">Type of Job</h5>
+        <h5 class="text-uppercase">Type of Job:</h5>
         {!! $employee['type_of_job'] !!}
+        <hr>
+        <h5 class="text-uppercase">Requirements:</h5>
+        {!! $employee['requirements'] !!}
+        <hr>
+        <h5 class="text-uppercase">Description:</h5>
+        {!! $employee['description'] !!}
         <hr>
 
         

@@ -40,6 +40,8 @@ class EmployeeController extends Controller
             'company_name' => 'required',
             'contact_number' => 'required',
             'type_of_job' => 'required',
+            'description' => 'required',
+            'requirements' => 'required',
         ]);
       
         $employee = new Employee();
@@ -49,15 +51,8 @@ class EmployeeController extends Controller
         $employee->company_name = $request->company_name;
         $employee->contact_number = $request->contact_number;
         $employee->type_of_job = $request->type_of_job;
-
-
-        // if ($request->role == 3) {
-        //     $user->student_id = $request->student_id;
-        //     $user->age = $request->age;
-        //     $user->course = $request->course;
-        //     $user->year = $request->year;
-        //     $user->address = $request->address;
-        // }
+        $employee->description = $request->description;
+        $employee->requirements = $request->requirements;
 
         $employee->save();
 
@@ -101,6 +96,8 @@ class EmployeeController extends Controller
             'company_name' => 'required',
             'contact_number' => 'required',
             'type_of_job' => 'required',
+            'description' => 'required',
+            'requirements' => 'required',
         ]);
     
        
@@ -110,24 +107,8 @@ class EmployeeController extends Controller
         $employee->company_name = $request->company_name;
         $employee->contact_number = $request->contact_number;
         $employee->type_of_job = $request->type_of_job;
-    
-        
-        // if ($request->role == 3) {
-        //     $user->student_id = $request->student_id;
-        //     $user->age = $request->age;
-        //     $user->course = $request->course;
-        //     $user->year = $request->year;
-        //     $user->address = $request->address;
-        // } else {
-            
-        //     $user->student_id = null;
-        //     $user->age = null;
-        //     $user->course = null;
-        //     $user->year = null;
-        //     $user->address = null;
-        // }
-    
-        
+        $employee->description = $request->description;
+        $employee->requirements = $request->requirements;
         $employee->save();
     
         
